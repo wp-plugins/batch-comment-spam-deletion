@@ -3,7 +3,7 @@
 Plugin Name: Batch Comment Spam Deletion
 Plugin URL: http://pippinsplugins.com/batch-comment-spam-deletion
 Description: Modifies the Empty Spam action in WordPress to process the spam deletion in batches, allowing you to delete thousands or even hundreds of thousands of spam comments at once without killing your server.
-Version: 1.0
+Version: 1.0.1
 Author: Pippin Williamson
 Author URI: http://pippinsplugins.com
 Contributors: mordauk, ghost1227
@@ -101,6 +101,10 @@ class PW_BCPD {
 		remove_submenu_page( 'edit-comments.php', 'pw-bcpd-process' );
 
 		if( 'edit-comments.php' != $pagenow ) {
+			return;
+		}
+
+		if( 'spam' != $_GET['comment_status'] ) {
 			return;
 		}
 
